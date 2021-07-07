@@ -2,14 +2,14 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ejercicio 2 - Pair Programming</title>
     <style>
         h2 {
             color: blue;
         }
-
+        
         div {
             border: 1px solid black;
             border-radius: 50%;
@@ -18,18 +18,18 @@
             align-items: center;
             background-color: white;
         }
-
+        
         #externo {
             width: 200px;
             height: 200px;
             margin: 30px;
         }
-
+        
         #medio {
             width: 150px;
             height: 150px;
         }
-
+        
         #interno {
             width: 100px;
             height: 100px;
@@ -39,25 +39,20 @@
 
 <body>
     <h2>
-        Crear 3 círculos concéntricos en la vista, donde se disponga de un selector que me permita elegir entre los
-        siguientes colores: rojo, verde, azul.
-        Si hago un click sobre uno de los círculos, lo rellenará del color seleccionado juntamente a los círculos que
-        tenga por detrás: eso será el caso de estar habilitado el modo "superpuesto" en una casilla de checkbox,
-        en caso contrario, sólo pintará la figura indicada. Disponer de un botón de reset, para borrar el color de todos
-        los círculos. Si el ancho
-        de la pantalla es inferior a 500px poner el fondo del documento web en color #eee (hacer esta operación al
-        comienzo ó sobre un cambio en el ancho).
+        Crear 3 círculos concéntricos en la vista, donde se disponga de un selector que me permita elegir entre los siguientes colores: rojo, verde, azul. Si hago un click sobre uno de los círculos, lo rellenará del color seleccionado juntamente a los círculos
+        que tenga por detrás: eso será el caso de estar habilitado el modo "superpuesto" en una casilla de checkbox, en caso contrario, sólo pintará la figura indicada. Disponer de un botón de reset, para borrar el color de todos los círculos. Si el ancho
+        de la pantalla es inferior a 500px poner el fondo del documento web en color #eee (hacer esta operación al comienzo ó sobre un cambio en el ancho).
     </h2>
-    <hr>
+    <hr />
 
     <main>
         <select>
-            <option value="red">ROJO</option>
-            <option value="green">VERDE</option>
-            <option value="blue">AZUL</option>
-        </select>
+        <option value="red">ROJO</option>
+        <option value="green">VERDE</option>
+        <option value="blue">AZUL</option>
+      </select>
 
-        <input type="checkbox"> Superpuesto
+        <input type="checkbox" /> Superpuesto
         <button>Reset</button>
 
         <div id="externo">
@@ -65,43 +60,56 @@
                 <div id="interno"></div>
             </div>
         </div>
-
     </main>
 
     <script>
-        var externo = document.querySelector("#externo")
-        var medio = document.querySelector("#medio")
-        var interno = document.querySelector("#interno")
+        var externo = document.querySelector("#externo");
+        var medio = document.querySelector("#medio");
+        var interno = document.querySelector("#interno");
 
         window.addEventListener("load", () => {
-            propagation()
-            resetPropagation()
-            getColor()
-        })
-
+            propagation();
+            resetPropagation();
+            getColor();
+        });
 
         externo.addEventListener("click", (e) => {
             console.log("Click en externo");
-            externo.style.backgroundColor = getColor()
-            e.stopPropagation();
-        })
+            if (propagation()) {
+                externo.style.backgroundColor = getColor();
+            } else {
+                e.stopPropagation();
+                externo.style.backgroundColor = getColor()
+            }
+        });
 
         medio.addEventListener("click", (e) => {
             console.log("Click en medio");
-            e.stopPropagation();
-
-        })
+            if (propagation()) {
+                medio.style.backgroundColor = getColor();
+            } else {
+                e.stopPropagation();
+                medio.style.backgroundColor = getColor()
+            }
+        });
 
         interno.addEventListener("click", (e) => {
             console.log("Click en interno");
-            e.stopPropagation();
+            if (propagation()) {
+                interno.style.backgroundColor = getColor();
+            } else {
+                e.stopPropagation();
+                interno.style.backgroundColor = getColor()
+            }
+        });
 
-        })
+        //var check = document.querySelector("input")
 
-        var check = document.querySelector("input")
+        //console.log("Valor es :" + propagation())
+        var check = document.querySelector("input");
 
         function propagation() {
-            //var check = document.querySelector("input")
+            /* var check = document.querySelector("input"); */
 
             check.addEventListener("click", (e) => {
                 if (check.checked) {
@@ -111,8 +119,9 @@
                 }
 
                 console.log(check.checked);
-            })
+            });
 
+            return check.checked;
         }
 
         function resetPropagation() {
@@ -122,27 +131,27 @@
                     console.log("Reseteado");
                     check.checked = false;
                     console.log(check.checked);
+                    externo.style.backgroundColor = "white"
+                    medio.style.backgroundColor = "white"
+                    interno.style.backgroundColor = "white"
                 }
-
-            })
+            });
         }
 
-        console.log(getColor())
+        console.log(getColor());
 
         function getColor() {
-            let select = document.querySelector("select")
-            let color = select.value
+            let select = document.querySelector("select");
+            let color = select.value;
 
             select.addEventListener("change", () => {
-                color = select.options[select.selectedIndex].value
-                console.log(color)
-            })
+                color = select.options[select.selectedIndex].value;
+                console.log(color);
+            });
 
-            return color
-
+            return color;
         }
     </script>
-
 </body>
 
 </html>
