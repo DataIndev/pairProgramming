@@ -67,14 +67,19 @@
         var medio = document.querySelector("#medio");
         var interno = document.querySelector("#interno");
 
-        window.addEventListener("load", () => {
+        window.addEventListener("load", (e) => {
             propagation();
             resetPropagation();
             getColor();
         });
 
+        window.addEventListener("resize", () => {
+            if (window.outerWidth < 600) document.body.style.backgroundColor = "#eee"
+            else document.body.style.backgroundColor = "#232323"
+        })
+
         externo.addEventListener("click", (e) => {
-            console.log("Click en externo");
+            //console.log("Click en externo");
             if (propagation()) {
                 externo.style.backgroundColor = getColor();
             } else {
@@ -84,7 +89,7 @@
         });
 
         medio.addEventListener("click", (e) => {
-            console.log("Click en medio");
+            //console.log("Click en medio");
             if (propagation()) {
                 medio.style.backgroundColor = getColor();
             } else {
@@ -94,7 +99,7 @@
         });
 
         interno.addEventListener("click", (e) => {
-            console.log("Click en interno");
+            //console.log("Click en interno");
             if (propagation()) {
                 interno.style.backgroundColor = getColor();
             } else {
@@ -103,22 +108,19 @@
             }
         });
 
-        //var check = document.querySelector("input")
 
-        //console.log("Valor es :" + propagation())
         var check = document.querySelector("input");
 
         function propagation() {
-            /* var check = document.querySelector("input"); */
 
             check.addEventListener("click", (e) => {
                 if (check.checked) {
-                    console.log("Cheked");
+                    //console.log("Cheked");
                 } else {
-                    console.log("Unchecked");
+                    //console.log("Unchecked");
                 }
 
-                console.log(check.checked);
+                //console.log(check.checked);
             });
 
             return check.checked;
@@ -128,9 +130,9 @@
             document.addEventListener("click", (e) => {
                 //console.log(e)
                 if (e.target.innerHTML == "Reset") {
-                    console.log("Reseteado");
+                    //console.log("Reseteado");
                     check.checked = false;
-                    console.log(check.checked);
+                    //console.log(check.checked);
                     externo.style.backgroundColor = "white"
                     medio.style.backgroundColor = "white"
                     interno.style.backgroundColor = "white"
@@ -138,7 +140,7 @@
             });
         }
 
-        console.log(getColor());
+        //console.log(getColor());
 
         function getColor() {
             let select = document.querySelector("select");
@@ -146,7 +148,7 @@
 
             select.addEventListener("change", () => {
                 color = select.options[select.selectedIndex].value;
-                console.log(color);
+                //console.log(color);
             });
 
             return color;
