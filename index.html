@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1 - Pair Programming</title>
+    <style>
+        h2 {
+            color: blue;
+        }
+        
+        main {
+            height: 50vh;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        OK 1º - Adaptar esta página web para que permita cambiar el color de fondo del contenedor main. OK 2º - Los colores disponibles serán: rojo, verde, azul y negro y se seleccionarán desde un array. OK 3º - Se dispondrá de dos botones para avanzar y retroceder
+        respectivamente la selección del color. OK 4º - En caso de llegar al final se comenzará desde el principio y viceversa. OK 5º - No utilizar id ni clases para referenciar los botones. OK 6º - El color seleccionado se indicará por debajo de los
+        botones en un elemento h2 con texto en blanco (NO se deberá cambiar el color de este mismo texto). 7º - Utilizar contructores de variables de ES6 y arrow function y registro de eventos con addEventListener. Permitir incorporar más colores al array,
+        sin hacer modificaciones al código.
+    </h2>
+    <hr>
+
+    <main>
+        <button>Cambiar Color -</button>
+        <button>Cambiar Color +</button>
+        <h2></h2>
+    </main>
+
+    <script>
+        var colorPage = ['red', 'green', 'blue', 'black', 'yellow', 'purple', 'orange']
+        var colorState = 0
+
+        console.log("Initialized color:  " + colorState)
+
+        window.addEventListener("load", () => {
+            getColor(colorPage)
+        })
+
+        document.addEventListener("click", (e) => {
+
+            let btn = e.target.innerHTML
+
+            if (btn == "Cambiar Color -") {
+                colorState--
+                if (colorState < 0) colorState = (colorPage.length - 1)
+                getColor(colorPage)
+                console.log("Color: " + colorState)
+
+
+            } else if (btn == "Cambiar Color +") {
+                colorState++
+                if (colorState > (colorPage.length - 1)) colorState = 0
+                getColor(colorPage)
+                console.log("Color: " + colorState)
+
+            } else {
+                return false;
+
+            }
+        })
+
+        function getColor(array2) {
+            document.body.style.backgroundColor = array2[colorState]
+            document.querySelectorAll("h2")[1].innerText = "Color es: " + array2[colorState]
+
+        }
+    </script>
+
+</body>
+
+</html>
