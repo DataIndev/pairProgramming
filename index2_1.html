@@ -68,20 +68,24 @@
         var interno = document.querySelector("#interno");
         var check = document.querySelector("input");
 
+        // Setea el color de fondo y carga la funcion resetPropagation()
         window.addEventListener("load", () => {
-            resetPropagation();
+            //resetPropagation();
             document.body.style.backgroundColor = "#232323"
         });
 
+        // Cambiar el color de fondo según tamaño
         window.addEventListener("resize", () => {
             if (window.outerWidth < 600) document.body.style.backgroundColor = "#eee"
             else document.body.style.backgroundColor = "#232323"
         })
 
+        //Llama a la funcion principal
         principal(externo)
         principal(medio)
         principal(interno)
 
+        // Funcion principal,verifica propagación y pinta el circulo.
         function principal(id) {
             id.addEventListener("click", (e) => {
                 if (propagation(check)) {
@@ -93,22 +97,23 @@
             });
         }
 
+        // Checkea si la propagación esta activada.
         function propagation(param) {
             return param.checked
         }
-
+        // Reinicia color de los circulos y el DropDown
         function resetPropagation() {
             document.addEventListener("click", (e) => {
                 if (e.target.innerHTML == "Reset") {
                     check.checked = false;
-                    console.log(check.checked);
-                    externo.style.backgroundColor = "white"
-                    medio.style.backgroundColor = "white"
-                    interno.style.backgroundColor = "white"
+                    var div = document.querySelectorAll("div")
+                    div.forEach(index => index.style.backgroundColor = "white")
+                    let reset1 = document.querySelector("select").selectedIndex = 0
                 }
             });
         }
 
+        //Obtiene el calor según el Dropdown
         function getColor() {
             let color = document.querySelector("select").value
             return color;
