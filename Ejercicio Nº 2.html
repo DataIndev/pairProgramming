@@ -94,7 +94,7 @@
                     e.stopPropagation();
                     id.style.backgroundColor = getColor()
                 }
-            });
+            })
         }
 
         // Reinicia color de los circulos y el DropDown
@@ -106,13 +106,13 @@
                     div.forEach(index => index.style.backgroundColor = "white")
                     let reset1 = document.querySelector("select").selectedIndex = 0
                 }
-            });
+            })
         }
 
         //Obtiene el color según el Dropdown
         function getColor() {
             let color = document.querySelector("select").value
-            return color;
+            return color
         }
     </script>
 </body>
