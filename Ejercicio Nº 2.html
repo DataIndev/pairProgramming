@@ -88,7 +88,7 @@
         // Funcion principal,verifica propagación y pinta el circulo.
         function principal(id) {
             id.addEventListener("click", (e) => {
-                if (propagation(check)) {
+                if (check.checked) {
                     id.style.backgroundColor = getColor();
                 } else {
                     e.stopPropagation();
@@ -97,10 +97,6 @@
             });
         }
 
-        // Checkea si la propagación esta activada.
-        function propagation(param) {
-            return param.checked
-        }
         // Reinicia color de los circulos y el DropDown
         function resetPropagation() {
             document.addEventListener("click", (e) => {
