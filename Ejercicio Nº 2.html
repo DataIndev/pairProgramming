@@ -76,8 +76,7 @@
 
         // Cambiar el color de fondo según tamaño
         window.addEventListener("resize", () => {
-            if (window.outerWidth < 600) document.body.style.backgroundColor = "#eee"
-            else document.body.style.backgroundColor = "#232323"
+            window.outerWidth < 600 ? document.body.style.backgroundColor = "#eee" : document.body.style.backgroundColor = "#232323"
         })
 
         //Llama a la funcion principal
@@ -88,12 +87,7 @@
         // Funcion principal,verifica propagación y pinta el circulo.
         function principal(id) {
             id.addEventListener("click", (e) => {
-                if (check.checked) {
-                    id.style.backgroundColor = getColor();
-                } else {
-                    e.stopPropagation();
-                    id.style.backgroundColor = getColor()
-                }
+                check.checked ? id.style.backgroundColor = getColor() : ( e.stopPropagation(), id.style.backgroundColor = getColor())
             })
         }
 
