@@ -49,26 +49,34 @@
         <input type="checkbox"> Superpuesto
         <button>Reset</button>
 
+        <div></div>
+
 
     </main>
 
     <script>
+        var n = 3
         const CANT_CIRCULOS_ANIDADOS = 3
         var divs = []
 
-        for (let i = 0; i < CANT_CIRCULOS_ANIDADOS; i++) {
+        for (let i = 0; i <= CANT_CIRCULOS_ANIDADOS; i++) {
             let div = document.createElement('div')
             div.setAttribute("id", i)
             divs.push(div)
+
+        }
+/*     divs[0].appendChild(divs[1])
+        divs[1].appendChild(divs[2]) */
+
+        var divp = querySelector("div")
+        
+        for (let i = 0; i < 5; i++) {
+
+            divp.innerHTML =+ "<div>Prueba</div>"
+            
         }
 
-
-        divs[0].appendChild(divs[1])
-        divs[1].appendChild(divs[2])
-
-        document.querySelector("main").appendChild(divs[0])
-
-
+        document.querySelector("main").appendChild(divp)
 
     </script>
 
