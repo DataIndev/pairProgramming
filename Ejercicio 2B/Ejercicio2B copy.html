@@ -56,7 +56,7 @@
         console.log("Inicio Hijos?: " + div.hasChildNodes());
         console.log("==================================");
 
-        for (let i = 1; i <= n; i++) {
+        for (let i = 1; i < n; i++) {
 
             console.log("Interacion Numero: " + i);
 
@@ -65,24 +65,22 @@
 
             if (div.hasChildNodes()) {
                 console.log("Si tine hijos");
-                console.log("Nodo" + div.parentNode);
-                div.lastChild.appendChild(divn)
-                console.log("==================================");
-
+                div.lastElementChild.appendChild(divn)
+                document.querySelector("main").appendChild(div)
+                console.log("Ultimo Ele:" + div.lastElementChild)
             } else {
                 console.log("====================");
                 console.log("No tiene Hijos");
                 div.appendChild(divn)
-                console.log("==================================");
-
-
+                document.querySelector("main").appendChild(div)
+                console.log("Ultimo Ele:" + div.lastElementChild)
             }
-
-
 
         }
 
-        document.querySelector("main").appendChild(div)
+        //document.querySelector("main").appendChild(div)
+
+        console.log(div.lastElementChild);
     </script>
 
 </body>
