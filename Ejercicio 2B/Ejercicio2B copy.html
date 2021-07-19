@@ -43,27 +43,46 @@
         <input type="checkbox"> Superpuesto
         <button>Reset</button>
 
+        </div>
+        </div>
+
     </main>
 
     <script>
-        var n = 3
-        const CANT_CIRCULOS_ANIDADOS = 3
-        var divs = []
-        var dv = document.querySelector("#dv")
+        const n = 3
 
-        for (let i = 0; i <= CANT_CIRCULOS_ANIDADOS; i++) {
-            let div = document.createElement('div')
-            div.setAttribute("id", i)
-            divs.push(div)
+        var div = document.createElement("div")
+        div.setAttribute("id", "0")
+        console.log("Inicio Hijos?: " + div.hasChildNodes());
+        console.log("==================================");
+
+        for (let i = 1; i <= n; i++) {
+
+            console.log("Interacion Numero: " + i);
+
+            let divn = document.createElement("div")
+            divn.setAttribute("id", i)
+
+            if (div.hasChildNodes()) {
+                console.log("Si tine hijos");
+                console.log("Nodo" + div.parentNode);
+                div.lastChild.appendChild(divn)
+                console.log("==================================");
+
+            } else {
+                console.log("====================");
+                console.log("No tiene Hijos");
+                div.appendChild(divn)
+                console.log("==================================");
+
+
+            }
+
+
 
         }
-        /*     divs[0].appendChild(divs[1])
-                divs[1].appendChild(divs[2]) */
 
-        function crearDiv() {
-            let div = document.createElement('div')
-            return div
-        }
+        document.querySelector("main").appendChild(div)
     </script>
 
 </body>
