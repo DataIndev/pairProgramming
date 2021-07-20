@@ -51,6 +51,8 @@
 
         <input type="checkbox"> Superpuesto
         <button>Reset</button>
+        <input type="number" id="quantity" min="1" max="100" value=1>
+        <button>Crear</button>
 
         </div>
         </div>
@@ -63,45 +65,42 @@
         window.addEventListener("load", () => {
             resetPropagation();
             document.body.style.backgroundColor = "#232323"
-        });
+        })
 
         // Cambiar el color de fondo según tamaño
         window.addEventListener("resize", () => {
             window.outerWidth < 600 ? document.body.style.backgroundColor = "#eee" : document.body.style.backgroundColor = "#232323"
         })
-
-        var n = parseInt(prompt("Ingresar cantidad de circulos")) //Define max circles
-        const CANT_CIRCULOS_ANIDADOS = n //Circles quantity
+        //Define max circles
+        var n = 5
+        var CANT_CIRCULOS_ANIDADOS = n //Circles quantity
         var size = 400 //Max circle size
         const dist = size / CANT_CIRCULOS_ANIDADOS //Circle dist.
         var check = document.querySelector("input");
 
 
         //Create Circles
-        for (let i = 0; i < CANT_CIRCULOS_ANIDADOS; i++) {
-            let div = document.createElement('div')
-            let main = document.querySelector('main')
-            div.id = `div${i}`
-            div.style.width = `${size}px`
-            div.style.height = `${size}px`
+        function createCircles(cant) {
+            console.log("Cantidad" + n)
+            for (let i = 0; i < cant; i++) {
+                let div = document.createElement('div')
+                let main = document.querySelector('main')
+                div.id = `div${i}`
+                div.style.width = `${size}px`
+                div.style.height = `${size}px`
 
-            i > 0 ? document.querySelectorAll('div')[i - 1].appendChild(div) : (main.appendChild(div))
+                i > 0 ? document.querySelectorAll('div')[i - 1].appendChild(div) : (main.appendChild(div))
 
-            size -= (dist)
-            console.log(size)
+                size -= (dist)
+                console.log(size)
+            }
         }
+
 
         function getColor() {
             let color = document.querySelector("select").value
             return color
         }
-
-        const divs = document.querySelectorAll('div')
-        divs.forEach(element => {
-            element.addEventListener("click", (e) => {
-                check.checked ? element.style.backgroundColor = getColor() : (e.stopPropagation(), element.style.backgroundColor = getColor())
-            })
-        })
 
         function resetPropagation() {
             document.addEventListener("click", (e) => {
@@ -110,11 +109,25 @@
                     var div = document.querySelectorAll("div")
                     div.forEach(index => index.style.backgroundColor = "white")
                     document.querySelector("select").selectedIndex = 0
+                    document.querySelector("#quantity").value = ""
                 }
             })
         }
 
-
+        var btn = document.querySelectorAll("button")[1]
+        console.log(btn)
+        btn.addEventListener("click", (e) => {
+            btn.disabled = true
+            console.log(e.target.innerHTML)
+            createCircles(CANT_CIRCULOS_ANIDADOS)
+            let divs = document.querySelectorAll('div')
+            divs.forEach(element => {
+                element.addEventListener("click", (e) => {
+                    console.log("Circulo")
+                    check.checked ? element.style.backgroundColor = getColor() : (e.stopPropagation(), element.style.backgroundColor = getColor())
+                })
+            })
+        })
     </script>
 
 </body>
