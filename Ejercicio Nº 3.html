@@ -2,173 +2,152 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ejercicio 3 - Pair Programming</title>
-  <style>
-    h2 {
-      color: blue;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 3 - Pair Programming</title>
+    <style>
+        h2 {
+            color: blue;
+        }
 
-    .container {
-      width: 350px;
-      height: 350px;
-      background: rgb(226, 222, 222);
-      text-align: center;
-      color: blueviolet;
-    }
+        .container {
+            width: 350px;
+            height: 350px;
+            background: rgb(226, 222, 222);
+            text-align: center;
+            color: blueviolet;
+        }
 
-    div {
-      background-color: darkgray;
-      margin: 10px 4px;
-      height: 90px;
-    }
+        div {
+            background-color: darkgray;
+            margin: 10px 4px;
+            height: 90px;
+        }
 
-    #spanName,
-    #spanAge {
-      height: 21px;
-      margin: 0px
-    }
+        #spanName,
+        #spanAge {
+            height: 21px;
+            margin: 0px
+        }
 
-    input {
-      width: 80%;
-      height: 25px;
-      border: 1px solid black padding: 5px;
-      margin: 10px;
-      text-align: center;
-    }
+        input {
+            width: 80%;
+            height: 25px;
+            border: 1px solid #000000 padding: 5px;
+            margin: 10px;
+            text-align: center;
+        }
 
-    h3 {
-      position: relative;
-      top: 10px;
-    }
+        h3 {
+            position: relative;
+            top: 10px;
+        }
 
-    .entry {
-      height: 15px;
-    }
-  </style>
+        .entry {
+            height: 15px;
+        }
+    </style>
 </head>
 
 <body>
-  <hr />
-  <h2>
-    Realizar un formulario con los campos nombre, edad y email y un botón para
-    enviar la información a la consola. Cada campo tendrá un cartel propio de
-    validación creado en la estructura HTML y controlado por javascript.
-    Validar utilizando expresiones regulares. El nombre tendrá como minimo 3
-    caracteres y máximo 20 con caracteres alfabéticos, la edad estará entre 18
-    y 120 años y el mail debe ser válido. Todos los campos serán requeridos.
-    Indicar el error de validación con un simple "campo no válido" debajo del
-    campo correspondiente ó si se quiere dar más detalle del error. El botón
-    de envió se habilitará en el caso de que todo sea correcto y ahí se
-    representa en la consola lo ingresado en formato objeto: {nombre: xxxx,
-    edad: 99, email: y@z}
-  </h2>
-  <hr />
+    <hr />
+    <h2>
+        Realizar un formulario con los campos nombre, edad y email y un botón para enviar la información a la consola.
+        Cada campo tendrá un cartel propio de validación creado en la estructura HTML y controlado por javascript.
+        Validar utilizando expresiones regulares.
+        El nombre tendrá como minimo 3 caracteres y máximo 20 con caracteres alfabéticos, la edad estará entre 18 y 120
+        años y el mail debe ser válido. Todos los campos serán requeridos. Indicar el error de validación con un simple
+        "campo no válido" debajo
+        del campo correspondiente ó si se quiere dar más detalle del error. El botón de envió se habilitará en el caso
+        de que todo sea correcto y ahí se representa en la consola lo ingresado en formato objeto: {nombre: xxxx, edad:
+        99, email: y@z}
+    </h2>
+    <hr />
 
-  <div class="container">
-    <h3>Titulo</h3>
-    <hr>
-    <form>
+    <div class="container">
+        <h3>Titulo</h3>
+        <hr>
+        <form>
 
-      <div class="name"> <label for="">Nombre</label>
-        <input type="text" name="" id="name" /><br />
-        <div id="spanName"></div>
-      </div>
+            <div class="name"> <label for="">Nombre</label>
+                <input type="text" name="" id="name" /><br />
+                <div id="spanName"></div>
+            </div>
 
-      <div class="age"> <label for="">Edad</label><br />
-        <input type="number" name="" id="age" /><br />
-        <div id="spanAge"></div>
-      </div>
+            <div class="age"> <label for="">Edad</label><br />
+                <input type="number" name="" id="age" /><br />
+                <div id="spanAge"></div>
+            </div>
 
-      <div class="email"> <label for="">Email</label><br />
-        <input type="email" name="" id="email" /><br />
-        <span id="spanEmail"></span>
-      </div>
+            <div class="email"> <label for="">Email</label><br />
+                <input type="email" name="" id="email" /><br />
+                <span id="spanEmail"></span>
+            </div>
 
-      <button type="submit" id="btn">Enviar Formulario</button>
+            <button type="submit" id="btn">Enviar Formulario</button>
 
 
-    </form>
+        </form>
 
-  </div>
+    </div>
 
-  <script>
-    const name = document.querySelector("#name")
-    const email = document.querySelector("#email")
-    const age = document.querySelector("#age")
-
-
-    let form = document.querySelector("form")
-
-    function validation(valor) {
-
-      if (valor.id == "name") {
-        let regexp = /^[a-z]{3,20}$/i
-        let check = regexp.test(valor.value)
-        return check
-
-      }
-      else if (valor.id == "age") {
-        let regexp = /^[0-9]+$/
-        let check = regexp.test(valor.value)
-        return check
-
-      }
-      else if (valor.id == "email") {
-
-      }
-    }
+    <script>
+        const name = document.querySelector("#name")
+        const email = document.querySelector("#email")
+        const age = document.querySelector("#age")
 
 
-    name.addEventListener("input", () => {
+        let form = document.querySelector("form")
 
-      let check = validation(name)
-      console.log(check, name.id);
+        function validation(valor) {
 
-      let div1 = document.querySelector("#spanName")
+            if (valor.id == "name") {
+                let regexp = /^[a-z]{3,20}$/i
+                let check = regexp.test(valor.value)
+                return check
 
-      if (!check) {
-        div1.style.display = "block"
-        div1.innerHTML = "Campo Incorrecto"
-        div1.style.backgroundColor = "yellow"
-        div1.style.color = "red"
-      }
-      else {
-        div1.style.display = "none"
-      }
-    })
+            } else if (valor.id == "age") {
+                let regexp = /^[0-9]+$/
+                let check = regexp.test(valor.value)
+                return check
 
+            } else if (valor.id == "email") {
 
-
-
-    age.addEventListener("input", () => {
-
-      let check = validation(age)
-      console.log(check, age.id);
-
-      let div1 = document.querySelector("#spanAge")
-
-      if (check) {
-        if (age.value < 18 || age.value > 122) {
-          div1.style.display = "block"
-          div1.innerHTML = "Campo Incorrecto"
-          div1.style.backgroundColor = "yellow"
-          div1.style.color = "red"
+            }
         }
-        else {
-          div1.style.display = "none"
+
+        function mensaje(msg, type) {
+            let check = validation(type)
+            console.log(check);
+            if (check) {
+                msg.style.display = "none"
+            } else {
+                msg.style.display = "block"
+                msg.innerHTML = "Campo Invalido"
+                msg.style.backgroundColor = "yellow"
+                msg.style.color = "red"
+            }
         }
-      }
 
 
-    })
+        name.addEventListener("input", () => {
+            let div1 = document.querySelector("#spanName")
+            mensaje(div1, name)
+        })
 
-    email.addEventListener("input", (e) => {
-      console.log(e.target.value);
-      email.setCU
-    })
-  </script>
+        age.addEventListener("input", () => {
+            let div2 = document.querySelector("#spanAge")
+            if (age.value < 18 || age.value > 120) {
+                //console.log(age.value);
+                mensaje(div2, age)                
+            }
+        })
+
+        email.addEventListener("input", (e) => {
+            console.log(e.target.value);
+            
+        })
+    </script>
 </body>
 
 </html>
