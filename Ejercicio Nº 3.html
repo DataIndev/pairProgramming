@@ -46,6 +46,10 @@
         .entry {
             height: 15px;
         }
+
+        invalid {
+            border: 2px solid #ff0000;
+        }
     </style>
 </head>
 
@@ -69,17 +73,17 @@
         <hr>
         <form>
 
-            <div class="name"> <label for="">Nombre</label>
-                <input type="text" name="" id="name" /><br />
+            <div class="name"> <label>Nombre</label>
+                <input type="text" name="name" id="name" /><br />
                 <div id="spanName"></div>
             </div>
 
-            <div class="age"> <label for="">Edad</label><br />
+            <div class="age"> <label>Edad</label><br />
                 <input type="text" name="" id="age" /><br />
                 <div id="spanAge"></div>
             </div>
 
-            <div class="email"> <label for="">Email</label><br />
+            <div class="email"> <label>Email</label><br />
                 <input type="email" name="" id="email" /><br />
                 <span id="spanEmail"></span>
             </div>
@@ -92,12 +96,15 @@
     </div>
 
     <script>
+
         const name = document.querySelector("#name")
         const email = document.querySelector("#email")
         const age = document.querySelector("#age")
 
 
         let form = document.querySelector("form")
+        const btn = document.querySelector("#btn")
+        btn.disabled = true
 
         function validation(valor) {
 
@@ -132,7 +139,6 @@
             }
         }
 
-
         name.addEventListener("input", () => {
             let div1 = document.querySelector("#spanName")
             mensaje(div1, name)
@@ -148,6 +154,28 @@
             mensaje(div3, email)
 
         })
+
+        function formValidation(x, y, z) {
+            (validation(x) && validation(y) && validation(z)) ? btn.disabled = false : btn.disabled = true
+
+        }
+
+        form.addEventListener("change", () => {
+            formValidation(name, email, age)
+        })
+
+        btn.addEventListener("click", (e) => {
+            if (btn.disabled == true) {
+                return false
+            }
+
+            else {
+                e.preventDefault()
+                console.log("Click");
+
+            }
+        })
+
     </script>
 </body>
 
