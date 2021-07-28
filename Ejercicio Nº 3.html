@@ -75,7 +75,7 @@
             </div>
 
             <div class="age"> <label for="">Edad</label><br />
-                <input type="number" name="" id="age" /><br />
+                <input type="text" name="" id="age" /><br />
                 <div id="spanAge"></div>
             </div>
 
@@ -107,18 +107,21 @@
                 return check
 
             } else if (valor.id == "age") {
+                console.log(valor.id);
                 let regexp = /^[0-9]+$/
                 let check = regexp.test(valor.value)
+                if (check && valor.value >= 18 && valor.value <= 120) return true
+                else return false
+            }
+            else {
+                let regexp = /(^[a-zA-Z0-9]+[@]{1}[a-z0-9]+[\.][a-z]{2,9}$)/
+                let check = regexp.test(valor.value)
                 return check
-
-            } else if (valor.id == "email") {
-
             }
         }
 
         function mensaje(msg, type) {
             let check = validation(type)
-            console.log(check);
             if (check) {
                 msg.style.display = "none"
             } else {
@@ -137,15 +140,13 @@
 
         age.addEventListener("input", () => {
             let div2 = document.querySelector("#spanAge")
-            if (age.value < 18 || age.value > 120) {
-                //console.log(age.value);
-                mensaje(div2, age)                
-            }
+            mensaje(div2, age)
         })
 
-        email.addEventListener("input", (e) => {
-            console.log(e.target.value);
-            
+        email.addEventListener("input", () => {
+            let div3 = document.querySelector("#spanEmail")
+            mensaje(div3, email)
+
         })
     </script>
 </body>
